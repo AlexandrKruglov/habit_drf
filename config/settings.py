@@ -103,9 +103,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("NAME"),  # Имя базы данных
-        "USER": os.getenv("DB_USER"),  # Пользователь для подключения
-        "PASSWORD": os.getenv("DB_PASSWORD"),  # Пароль для подключения
+        "NAME": os.getenv("POSTGRES_DB"),  # Имя базы данных
+        "USER": os.getenv("POSTGRES_USER"),  # Пользователь для подключения
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),  # Пароль для подключения
+        "HOST": os.getenv("POSTGRES_HOST"),  # ��ост базы данных
+        "PORT": os.getenv("POSTGRES_PORT"),  # Порт подключения
     }
 }
 
@@ -157,10 +159,10 @@ TELEGRAM_URL = "https://api.telegram.org/bot"
 TELEGRAM_TOKEN_BOT = os.getenv("TELEGRAM_TOKEN_BOT")
 
 # URL-адрес брокера сообщений
-CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_BROKER_URL = 'redis://redis:6379'
 
 # URL-адрес брокера результатов, также Redis
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://redis:6379'
 
 # Часовой пояс для работы Celery
 CELERY_TIMEZONE = TIME_ZONE
